@@ -1,0 +1,1 @@
+# uppm-package-repository-netbsd-x86_64
