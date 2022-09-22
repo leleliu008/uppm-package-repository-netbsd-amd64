@@ -22,4 +22,12 @@ jobs:
         with:
           mem: 2048
           box: generic/netbsd${{ matrix.version }}
-          run: ./test.sh
+          run: |
+            if [ ${{ matrix.version }} -eq 8 ] ; then
+                sudo pkgin -y update
+                sudo pkgin -y install gtar
+                ln -sf /usr/pkg/bin/gtar $PWD/tar
+                export PATH="$PWD:$PATH"
+            fi
+
+            ./test.sh
